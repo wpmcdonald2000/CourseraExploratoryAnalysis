@@ -1,0 +1,45 @@
+search()
+library(ggplot2)
+install.package("ggplot2")
+install.packages("ggplot2")
+library(ggplot2)
+search()
+install.packages("RMYSQL")
+R CMD INSTALL RMySQL_0.9-3.tar.gz
+require(utils,quietly=TRUE)#
+# Find first existing Mysql home #
+reg <- readRegistry("SOFTWARE\\MySQL AB", hive="HLM", maxdepth=2)#
+if (!is.null(reg)){#
+	cat("Try setting MYSQL_HOME to one of the following (you may have to use the non-8dot3 file name):\r\n\r\n")#
+	invisible(lapply(reg,function(i){#
+		MySQLhome <- file.path(i$Location,".")#
+		if (utils::file_test("-d",MySQLhome) &&#
+			utils::file_test("-d",file.path(MySQLhome,"include")) &&#
+			utils::file_test("-d",file.path(MySQLhome,"lib/opt"))){#
+			cat(MySQLhome,"\r\n",sep='')#
+		}#
+	}#
+	))#
+}#
+q(save="no")
+bitmap()
+png()
+quartz()
+pdf()
+getwd()
+setwd(/Users/williammcdonald/CourseraExploratoryAnalysis)
+setwd("/Users/williammcdonald/CourseraExploratoryAnalysis")
+getwd()
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
+plot(NEI$year, NEI$Emissions, ylim = c(0,10000))
+plot(NEI$year, sum(NEI$Emissions), ylim = c(0,20000))
+aggregate(NEI$Emissions, by = list(Category = NEI$year), FUN = sum)
+x <- aggregate(NEI$Emissions, by = list(Category = NEI$year), FUN = sum)
+x
+plot(x)
+y<- lm(x)
+y
+plot(x)
+abline(y)
+load("/Users/williammcdonald/CourseraExploratoryAnalysis/summarySCC_PM25.rds")
