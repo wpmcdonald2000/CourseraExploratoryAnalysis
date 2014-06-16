@@ -21,14 +21,19 @@ labc_mobile_Emissions <- labc_Emissions[labc_mobile,]
 # aggregate Emissions by year and fips
 labc_agg <- aggregate(Emissions ~ year + fips, data = labc_mobile_Emissions, FUN = sum)
 
+# Normalize Emissions to 1999 levels
+labc_agg$Emissions2 <- 0
+labc_agg[1:4,4] <- labc_agg[1:4,3]/labc_agg[1,3]
+labc_agg[5:8,4] <- labc_agg[5:8,3]/labc_agg[5,3]
+
 # open png file device, name file, initialize size
 png(file="plot6.png",width=480,height=480)
 
-# plot(labc_agg$year, labc_agg$Emissions, xlab = "Years", ylab = "Emissions (Tons)",
-#     main = expression ("LA v Baltimore Mobile PM"[2.5]*" Particulate Emissions"))
-
-qplot(year, Emissions, data = labc_agg, facets = .~ fips , 
-      main = expression("LA(06037) v Baltimore(24510) Particulate PM"[2.5]*"Emissions"))
+# qplot(year, Emissions, data = labc_agg, facets = .~ fips , 
+#      main = expression("LA(06037) v Baltimore(24510) Particulate PM"[2.5]*"Emissions"))
+qplot(year, Emissions2, data = labc_agg, facets = .~fips , 
+      main = expression("LA(06037) v Baltimore(24510) Particulate PM"[2.5]*"Emissions"), 
+      ylab = "Emissions (% of 1999 levels)")
 
 # turn off png file device
 dev.off()
