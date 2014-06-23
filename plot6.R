@@ -31,9 +31,9 @@ png(file="plot6.png",width=480,height=480)
 
 # qplot(year, Emissions, data = labc_agg, facets = .~ fips , 
 #      main = expression("LA(06037) v Baltimore(24510) Particulate PM"[2.5]*"Emissions"))
-qplot(year, Emissions2, data = labc_agg, facets = .~fips , 
+qplot(year, Emissions2, data = labc_agg, facets = fips~. , 
       main = expression("LA(06037) v Baltimore(24510) Particulate PM"[2.5]*"Emissions"), 
-      ylab = "Emissions (% of 1999 levels)")
+      ylab = "Emissions (% of 1999 levels)") + geom_line()
 
 # turn off png file device
 dev.off()

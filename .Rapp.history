@@ -43,3 +43,6 @@ y
 plot(x)
 abline(y)
 load("/Users/williammcdonald/CourseraExploratoryAnalysis/summarySCC_PM25.rds")
+NEI[NEI$fips == 06037,]
+NEI <- readRDS("summarySCC_PM25.rds")
+NEI[NEI$fips == 06037,]
